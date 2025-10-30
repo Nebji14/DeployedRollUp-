@@ -99,7 +99,8 @@ export const login = async (req, res) => {
   // Stocke le token en cookie HTTP-only
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false,
+    secure: process.env.MODE === "development" ? fasle : true,
+    sameSite: process.env.MODE === "development" ? "Lax" : "None",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
@@ -118,7 +119,13 @@ export const verifyMail = async (req, res) => {
     const tempUser = await TempUser.findOne({ email: decoded.email, token });
 
     if (!tempUser) {
-      return res.redirect(`${process.env.CLIENT_URL}/?message=error`);
+      return res.redirect(
+        `${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/?message=error`
+      );
     }
 
     // Création d'un utilisateur définitif à partir du TempUser
@@ -133,11 +140,23 @@ export const verifyMail = async (req, res) => {
     await newUser.save();
     await TempUser.deleteOne({ email: tempUser.email });
 
-    res.redirect(`${process.env.CLIENT_URL}/?message=success`);
+    res.redirect(
+      `${
+        process.env.MODE === "development"
+          ? process.env.CLIENT_URL
+          : process.env.DEPLOY_FRONT_URL
+      }/?message=success`
+    );
   } catch (error) {
     console.log(error);
     if (error.name === "TokenExpiredError") {
-      return res.redirect(`${process.env.CLIENT_URL}/?message=error`);
+      return res.redirect(
+        `${
+          process.env.MODE === "development"
+            ? process.env.CLIENT_URL
+            : process.env.DEPLOY_FRONT_URL
+        }/?message=error`
+      );
     }
   }
 };
