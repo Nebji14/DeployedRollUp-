@@ -25,7 +25,7 @@ export async function getTablesFromApi() {
 
 // Ajouter une table
 export async function addTable(values) {
-  console.log(values);
+  //console.log(values);
 
   try {
     const response = await fetch(`${BASE_URL}/tables`, {
@@ -42,7 +42,7 @@ export async function addTable(values) {
     }
 
     const newTable = await response.json();
-    console.log(newTable);
+    //console.log(newTable);
 
     return newTable;
   } catch (error) {

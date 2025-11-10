@@ -265,7 +265,7 @@ export default function Register({ active, onBack }) {
               htmlFor="consent"
               className="text-xs text-[#111827] font-montserrat"
             >
-              Accepter le traitement de mes informations.
+              J'ai lu et j'accepte la Politique de Confidentialité.
             </label>
           </div>
           {errors.consent && (

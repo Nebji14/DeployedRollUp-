@@ -5,7 +5,7 @@ import {
   addTable as addTableApi,
   deleteTable as deleteTableApi,
   updateTable as updateTableApi,
-  searchTables, // <-- AJOUTÉ
+  searchTables,
 } from "../api/table.api";
 import toast from "react-hot-toast";
 import { useAuth } from "./AuthContext";
@@ -86,7 +86,7 @@ export function TableProvider({ children }) {
 
   // Lancer une recherche filtrée
   const rechercherTables = async (filters) => {
-    setLoading(true); // Utilise la même logique de chargement
+    setLoading(true);
     try {
       const data = await searchTables(filters);
       setTables(data);
