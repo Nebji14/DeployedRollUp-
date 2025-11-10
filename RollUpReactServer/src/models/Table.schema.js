@@ -1,11 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
+// Options pour le genre
+const genresList = [
+  "Fantasy",
+  "Sci-Fi",
+  "Horreur",
+  "Historique",
+  "Cyberpunk",
+  "Steampunk",
+  "Post-Apocalyptique",
+];
+
 const tableSchema = new mongoose.Schema(
   {
     titre: { type: String, required: true, minLength: 3 },
     discord: { type: String, required: true, minLength: 3 },
     roll20: { type: String, required: true, minLength: 3 },
     image: { type: String, default: null },
+
+    genre: {
+      type: String,
+      enum: genresList,
+      required: true,
+    },
 
     nbJoueurs: {
       type: Number,
@@ -34,7 +51,6 @@ const tableSchema = new mongoose.Schema(
     frequence: {
       type: Number,
       enum: [1, 2, 3, 4, 5, 6, 7],
-      required: true,
     },
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     synopsis: { type: String, required: true, minLength: 25 },

@@ -4,7 +4,7 @@ import Table from "../models/Table.schema.js";
 export const getAllTables = async (req, res) => {
   try {
     // Récupère les paramètres de recherche envoyés par le front
-    const { search, niveau, systeme } = req.query;
+    const { search, niveau, systeme, genre } = req.query;
 
     const filter = {};
 
@@ -25,6 +25,11 @@ export const getAllTables = async (req, res) => {
     // Si le front envoie un système
     if (systeme) {
       filter.systeme = systeme;
+    }
+
+    //Si le front envoie un genre
+    if (genre) {
+      filter.genre = genre;
     }
 
     // Recherche les tables qui correspondent aux filtres
@@ -62,17 +67,22 @@ export const createTable = async (req, res) => {
       niveau,
       systeme,
       synopsis,
+      frequence,
+      genre,
     } = req.body;
+    console.log(req.body);
 
     const table = await Table.create({
       titre,
       discord,
       roll20,
       image,
-      nbJoueurs,
+      nbJoueurs: Number(nbJoueurs),
       niveau,
       systeme,
       synopsis,
+      frequence: Number(frequence),
+      genre,
       user: req.user._id,
     });
 

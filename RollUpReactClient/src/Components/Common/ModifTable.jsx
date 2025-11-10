@@ -15,21 +15,44 @@ import { uploadImage } from "../../lib/uploadService";
 import toast from "react-hot-toast";
 import { useTable } from "../../context/TableContext";
 
+const genresList = [
+  "Fantasy",
+  "Sci-Fi",
+  "Horreur",
+  "Historique",
+  "Cyberpunk",
+  "Steampunk",
+  "Post-Apocalyptique",
+];
+
 const schema = yup.object().shape({
-  titre: yup.string().required("Le titre est obligatoire"),
+  titre: yup
+    .string()
+    .required("Le titre est obligatoire")
+    .min(3, "Le titre doit faire au moins 3 caractères"),
   discord: yup
     .string()
     .url("Lien invalide")
-    .required("Le lien Discord est obligatoire"),
+    .required("Le lien Discord est obligatoire")
+    .min(3, "Le lien doit faire au moins 3 caractères"),
+
   roll20: yup
     .string()
     .url("Lien invalide")
-    .required("Le lien Roll20 est obligatoire"),
+    .required("Le lien Roll20 est obligatoire")
+    .min(3, "Le lien doit faire au moins 3 caractères"),
   nbJoueurs: yup
     .mixed()
     .test(
       "required",
       "Le nombre de joueurs est obligatoire",
+      (value) => value !== "Sélectionner"
+    ),
+  genre: yup
+    .mixed()
+    .test(
+      "required",
+      "Le genre est obligatoire",
       (value) => value !== "Sélectionner"
     ),
   niveau: yup
@@ -47,7 +70,10 @@ const schema = yup.object().shape({
       (value) => value !== "Sélectionner"
     ),
   frequence: yup.number().required("La fréquence est obligatoire"),
-  synopsis: yup.string().required("Le synopsis est obligatoire"),
+  synopsis: yup
+    .string()
+    .required("Le synopsis est obligatoire")
+    .min(25, "Le synopsis doit faire au moins 25 caractères"), // <-- AJOUTEZ CETTE LIGNE
 });
 
 export default function ModifierTable({ onClose, table }) {
@@ -70,6 +96,7 @@ export default function ModifierTable({ onClose, table }) {
       discord: "",
       roll20: "",
       nbJoueurs: "Sélectionner",
+      genre: "Sélectionner",
       niveau: "Sélectionner",
       systeme: "Sélectionner",
       frequence: 3,
@@ -84,6 +111,7 @@ export default function ModifierTable({ onClose, table }) {
         discord: table.discord || "",
         roll20: table.roll20 || "",
         nbJoueurs: table.nbJoueurs || "Sélectionner",
+        genre: table.genre || "Sélectionner",
         niveau: table.niveau || "Sélectionner",
         systeme: table.systeme || "Sélectionner",
         frequence: table.frequence || 3,
@@ -314,6 +342,42 @@ export default function ModifierTable({ onClose, table }) {
           <p className="text-red-500 text-xs mt-1">
             {errors.nbJoueurs.message}
           </p>
+        )}
+      </div>
+
+      {/* Genre */}
+      <div className="w-full sm:w-[90%] relative">
+        <label className="font-bold mb-1 block text-sm sm:text-base">
+          Genre de la partie
+        </label>
+        <div
+          className="flex items-center w-full h-10 sm:h-12 px-3 sm:px-4 rounded-full bg-[#E9E4DA] text-[#111827] shadow-[0_5px_5px_rgba(0,0,0,0.5)] border border-[#111827] cursor-pointer text-sm sm:text-base"
+          onClick={() => setOpenMenu(openMenu === "genre" ? null : "genre")}
+        >
+          <span className="flex-grow">{watch("genre")}</span>
+          <FontAwesomeIcon
+            icon={openMenu === "genre" ? faChevronUp : faChevronDown}
+            className="absolute right-3"
+          />
+        </div>
+        {openMenu === "genre" && (
+          <div className="absolute mt-1 w-full rounded-lg bg-[#E9E4DA] text-[#111827] border border-[#111827] z-10 text-sm sm:text-base">
+            {genresList.map((g, idx) => (
+              <div
+                key={idx}
+                className="px-3 py-1 cursor-pointer rounded-lg hover:bg-[#6c5ebf] hover:text-white"
+                onClick={() => {
+                  setValue("genre", g);
+                  setOpenMenu(null);
+                }}
+              >
+                {g}
+              </div>
+            ))}
+          </div>
+        )}
+        {errors.genre && (
+          <p className="text-red-500 text-xs mt-1">{errors.genre.message}</p>
         )}
       </div>
 
