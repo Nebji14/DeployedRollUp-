@@ -10,7 +10,7 @@ import UserNotConnected from "./ProtectedRoutes/UserNotConnected";
 import UserConnected from "./ProtectedRoutes/UserConnected";
 import LeCoinDesPj from "./Pages/LeCoinDesPj";
 import LeCoinDesMj from "./Pages/LeCoinDesMj";
-import Pdc from "./Pages/PDC";
+import Pdc from "./Pages/Pdc";
 
 export const router = createBrowserRouter([
   {
