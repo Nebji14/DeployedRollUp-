@@ -10,6 +10,7 @@ import UserNotConnected from "./ProtectedRoutes/UserNotConnected";
 import UserConnected from "./ProtectedRoutes/UserConnected";
 import LeCoinDesPj from "./Pages/LeCoinDesPj";
 import LeCoinDesMj from "./Pages/LeCoinDesMj";
+import Pdc from "./Pages/PDC";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,15 @@ export const router = createBrowserRouter([
         element: (
           <UserConnected>
             <LeCoinDesMj />
+          </UserConnected>
+        ),
+      },
+
+      {
+        path: "/Pdc",
+        element: (
+          <UserConnected>
+            <Pdc />
           </UserConnected>
         ),
       },

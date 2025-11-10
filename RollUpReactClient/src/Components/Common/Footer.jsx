@@ -40,18 +40,18 @@ function Footer() {
       </div>
 
       <div className="flex flex-col items-center md:items-end space-y-2 order-3">
-        <a
-          href="#"
+        <NavLink
+          to="/Pdc"
           className="text-[#F2EEE8] font-medium hover:text-[#f3cc7a] transition-colors text-center md:text-right text-sm"
         >
           Politique de confidentialité
-        </a>
-        <a
-          href="#"
+        </NavLink>
+        <NavLink
+          to="/mentions-legales"
           className="text-[#F2EEE8] font-medium hover:text-[#f3cc7a] transition-colors text-center md:text-right text-sm"
         >
           Mentions légales
-        </a>
+        </NavLink>
       </div>
     </footer>
   );
