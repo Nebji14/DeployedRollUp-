@@ -47,7 +47,7 @@ function Footer() {
           Politique de confidentialité
         </NavLink>
         <NavLink
-          to="/mentions-legales"
+          to="/MentionLeg"
           className="text-[#F2EEE8] font-medium hover:text-[#f3cc7a] transition-colors text-center md:text-right text-sm"
         >
           Mentions légales

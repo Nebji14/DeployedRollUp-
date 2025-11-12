@@ -11,6 +11,7 @@ import UserConnected from "./ProtectedRoutes/UserConnected";
 import LeCoinDesPj from "./Pages/LeCoinDesPj";
 import LeCoinDesMj from "./Pages/LeCoinDesMj";
 import Pdc from "./Pages/Pdc";
+import MentionLeg from "./Pages/MentionLeg";
 
 export const router = createBrowserRouter([
   {
@@ -65,11 +66,12 @@ export const router = createBrowserRouter([
 
       {
         path: "/Pdc",
-        element: (
-          <UserConnected>
-            <Pdc />
-          </UserConnected>
-        ),
+        element: <Pdc />,
+      },
+
+      {
+        path: "/MentionLeg",
+        element: <MentionLeg />,
       },
     ],
   },
