@@ -70,7 +70,7 @@ export const createTable = async (req, res) => {
       frequence,
       genre,
     } = req.body;
-    console.log(req.body);
+    //console.log(req.body);
 
     const table = await Table.create({
       titre,

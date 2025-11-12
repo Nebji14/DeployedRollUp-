@@ -1,6 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-// Options pour le genre
 const genresList = [
   "Fantasy",
   "Sci-Fi",
