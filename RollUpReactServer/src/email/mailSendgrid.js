@@ -5,7 +5,7 @@ dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 //Confirmation d'email
-const sendConfirmationEmail = async (mail, token) => {
+export const sendConfirmationEmail = async (mail, token) => {
   const mailOptions = {
     from: process.env.SENDGRID_SENDER,
     to: mail,
