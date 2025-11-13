@@ -2,10 +2,7 @@ import bcrypt from "bcrypt";
 import User from "../models/user.schema.js";
 import TempUser from "../models/tempuser.schema.js";
 import jwt from "jsonwebtoken";
-import {
-  sendConfirmationEmail,
-  sendResetPasswordEmail,
-} from "../email/email.js";
+import { sendConfirmationEmail } from "../email/mailSendgrid.js";
 import dotenv from "dotenv";
 
 dotenv.config();
