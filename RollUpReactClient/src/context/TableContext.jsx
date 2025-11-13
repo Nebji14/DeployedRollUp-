@@ -1,4 +1,3 @@
-// src/context/TableContext.jsx (ou .js)
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   getTablesFromApi,
