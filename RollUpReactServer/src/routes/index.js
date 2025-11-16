@@ -6,6 +6,8 @@ const router = express.Router();
 
 // Routes utilisateurs
 router.use("/user", userRoutes);
+// Alias pour compatibilité si le mail pointe sur /auth
+router.use("/auth", userRoutes);
 
 // Routes tables
 router.use("/tables", tableRoute);

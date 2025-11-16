@@ -187,7 +187,7 @@ export const currentUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.MODE === "development" ? fasle : true,
+    secure: process.env.MODE === "development" ? false : true,
     sameSite: process.env.MODE === "development" ? "Lax" : "None",
   });
   res.status(200).json({ message: "Déconnexion réussie" });
