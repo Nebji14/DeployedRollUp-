@@ -16,9 +16,9 @@ export const sendConfirmationEmail = async (mail, token) => {
     <p>Cliquez sur le lien suivant pour confirmer votre email et poursuivre l'inscription : 
     <a href="${
       process.env.MODE === "development"
-        ? process.env.SENDGRID_API_KEY
+        ? process.env.API_URL
         : process.env.DEPLOY_BACK_URL
-    }/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
+    }/auth/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
     Poursuivre l'inscription</a></p>
     <br/>
     <p>Ce lien est valable <span style="font-weight: bold;">15 minutes </span>, au delà de ce temps vous devrez recommencer le processus d'inscription. </p>
