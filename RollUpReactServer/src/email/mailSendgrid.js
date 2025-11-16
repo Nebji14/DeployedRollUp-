@@ -18,7 +18,7 @@ export const sendConfirmationEmail = async (mail, token) => {
       process.env.MODE === "development"
         ? process.env.API_URL
         : process.env.DEPLOY_BACK_URL
-    }/auth/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
+    }/verifyMail/${token}" style="color: #6C63FF; font-weight: bold;">
     Poursuivre l'inscription</a></p>
     <br/>
     <p>Ce lien est valable <span style="font-weight: bold;">15 minutes </span>, au delà de ce temps vous devrez recommencer le processus d'inscription. </p>
